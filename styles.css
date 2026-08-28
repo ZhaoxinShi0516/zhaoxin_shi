@@ -1,0 +1,1145 @@
+/* =========================================================
+   FONTS / COLORS / GLOBAL SETTINGS
+   ========================================================= */
+
+   :root{
+    --paper:#FFFFFF;
+    --paper-2:#F4F6F2;
+  
+    --ink:#19211C;
+    --ink-soft:#43504A;
+    --muted:#6E766F;
+  
+    --green:#1C4636;
+    --green-deep:#112C21;
+    --green-lit:#2C6B50;
+  
+    --link:#1E5742;
+    --line:#E3E8E1;
+  
+    --rose:#C27C8C;
+    --rose-soft:#E1BFC8;
+  
+    /* English name */
+    --name-font:"Verdana", Arial, sans-serif;
+
+    /* Body font */
+    --body-font:"Lato", Arial, sans-serif;
+  
+    /* Main serif */
+    --serif:"Source Serif 4", Georgia, "Lato", serif;
+  
+    /* Navigation / labels */
+    --sans:"IBM Plex Sans", system-ui, -apple-system,
+           "Segoe UI", Roboto, sans-serif;
+  
+    --measure:66ch;
+    --maxw:1080px;
+  }
+  
+  
+  /* =========================================================
+     GLOBAL
+     ========================================================= */
+  
+  *{
+    box-sizing:border-box;
+  }
+  
+  html{
+    scroll-behavior:smooth;
+  }
+  
+  body{
+    margin:0;
+  
+    background:var(--paper);
+    color:var(--ink);
+  
+    font-family:var(--body-font);
+    font-size:18px;
+    line-height:1.65;
+  
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  
+  a{
+    color:var(--link);
+    text-decoration:none;
+  }
+  
+  ::selection{
+    background:var(--rose-soft);
+    color:var(--green-deep);
+  }
+  
+  
+  /* =========================================================
+     GENERAL WRAPPER
+     ========================================================= */
+  
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 clamp(1.25rem,5vw,3rem);
+  }
+  
+  
+  /* =========================================================
+     SMALL LABELS
+     ========================================================= */
+  
+  .eyebrow{
+    font-family:var(--sans);
+  
+    font-size:.98rem;
+    font-weight:600;
+  
+    letter-spacing:.16em;
+    text-transform:uppercase;
+  
+    color:var(--muted);
+  }
+  
+  .label{
+    font-family:var(--sans);
+  
+    font-size:.9rem;
+    font-weight:600;
+  
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  
+    color:var(--green);
+  }
+  
+  
+  /* =========================================================
+     NAVIGATION
+     ========================================================= */
+  
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+  
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+  
+    padding:1rem clamp(1.25rem,5vw,3rem);
+  
+    background:#143528;
+  
+    border-bottom:1px solid transparent;
+  
+    transition:
+      background .35s ease,
+      border-color .35s ease;
+  }
+  
+  
+  /* -------- name at left -------- */
+  
+  .nav__brand{
+    display:flex;
+    align-items:center;
+    gap:.55rem;
+  
+    flex:0 0 auto;
+  
+    font-family:var(--serif);
+    font-size:1.5rem;
+    font-weight:600;
+  
+    letter-spacing:.01em;
+  
+    color:#F6F5EF;
+  
+    transition:color .35s ease;
+  }
+  
+  .nav__dot{
+    width:7px;
+    height:7px;
+  
+    border-radius:50%;
+  
+    background:var(--rose);
+  
+    display:inline-block;
+    flex:0 0 auto;
+  }
+  
+  
+  /* -------- navigation links -------- */
+  
+  .nav__links{
+    display:flex;
+    align-items:center;
+  
+    gap:1.8rem;
+  
+    margin-left:3rem;
+  
+    font-family:var(--sans);
+    font-size:1rem;
+    font-weight:500;
+  }
+  
+  .nav__links a{
+    position:relative;
+  
+    padding:.15rem 0;
+  
+    color:rgba(246,245,239,.78);
+  
+    transition:color .25s ease;
+  }
+  
+  .nav__links a::after{
+    content:"";
+  
+    position:absolute;
+  
+    left:0;
+    bottom:-3px;
+  
+    width:0;
+    height:1.5px;
+  
+    background:rgba(246,245,239,.7);
+  
+    transition:width .25s ease;
+  }
+  
+  .nav__links a:hover{
+    color:#FFFFFF;
+  }
+  
+  .nav__links a:hover::after{
+    width:100%;
+  }
+  
+  
+  /* -------- current page -------- */
+  
+  .nav__links a.active::after{
+    width:100%;
+  }
+  
+  .nav__links a.active{
+    color:#FFFFFF;
+  }
+  
+  
+  /* =========================================================
+     HOME NAVIGATION AFTER SCROLLING
+     ========================================================= */
+  
+  .nav.scrolled{
+    background:rgba(252,252,250,.92);
+  
+    backdrop-filter:saturate(140%) blur(10px);
+  
+    border-bottom:1px solid var(--line);
+  }
+  
+  .nav.scrolled .nav__brand{
+    color:var(--ink);
+  }
+  
+  .nav.scrolled .nav__links a{
+    color:var(--ink-soft);
+  }
+  
+  .nav.scrolled .nav__links a:hover{
+    color:var(--green);
+  }
+  
+  .nav.scrolled .nav__links a::after{
+    background:var(--green);
+  }
+  
+  .nav.scrolled .nav__links a.active{
+    color:var(--green);
+  }
+  
+  /* =========================================================
+     HOME HERO
+     ========================================================= */
+  
+  .hero{
+    padding:clamp(2rem,4vw,3rem) 0 clamp(2.25rem,4vw,3rem);
+    background:#143528;
+    position:relative;
+    overflow:hidden;
+  
+    /* local colors on the dark hero */
+    --line:rgba(246,245,239,.22);
+    --ink-soft:#D6DED2;
+    --muted:#AABFB0;
+    --green:#A9C6B6;
+  }
+  
+  /*
+    The hero gets a wider canvas for the portrait, while the text column
+    remains capped. This makes the photo larger WITHOUT making the name/
+    title column wider.
+  */
+  .hero .wrap{
+    max-width:1080px;
+    position:relative;
+    z-index:1;
+  }
+  
+  .hero__grid{
+    display:grid;
+    grid-template-columns:minmax(460px,520px) minmax(520px,1fr);
+    gap:clamp(2.5rem,5vw,5rem);
+    align-items:center;
+  }
+  
+  .hero__text{
+    min-width:0;
+    max-width:520px;
+  }
+  
+  /* -------- university line -------- */
+  
+  .hero__eyebrow{
+    margin-bottom:1.15rem;
+    white-space:nowrap;
+  }
+  
+  /* -------- main name -------- */
+  
+  .hero__name{
+    font-family:var(--name-font);
+    font-weight:600;
+    font-size:clamp(2.35rem,3.5vw,3.35rem);
+    line-height:1.08;
+    letter-spacing:-.015em;
+    white-space:nowrap;
+    margin:0;
+    color:#F8F7F1;
+  }
+  
+  /* Chinese name: bold Kaiti */
+  .hero__name .cn{
+    font-family:"PingFang SC", "Microsoft YaHei", "Noto Sans SC", serif;
+    font-weight:700;
+    color:var(--ink-soft);
+    margin-left:.35em;
+    letter-spacing:.02em;
+  }
+  
+  /* -------- plain-text academic/contact links -------- */
+  
+  .hero__links{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.5rem;
+    margin-top:1.7rem;
+    font-family:var(--sans);
+    font-size:1rem;
+    font-weight:500;
+  }
+  
+  .hero__linkrow{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:1.65rem;
+  }
+  
+  .hero__links a{
+    color:#A9C6B6;
+    padding:.05rem 0;
+    transition:color .2s ease;
+  }
+  
+  .hero__links a:hover{
+    color:#FFFFFF;
+  }
+  
+  /* =========================================================
+     HERO PHOTO
+     ========================================================= */
+  
+  .hero__figure{
+    position:relative;
+    margin:0;
+    width:100%;
+    min-width:0;
+    align-self:center;
+    justify-self:start;
+  }
+  
+  .photo{
+    position:relative;
+    z-index:1;
+  
+    /* intentionally larger than its grid column */
+    width:100%;
+    max-width:760px;
+    aspect-ratio:3/2;
+  
+    overflow:hidden;
+    border:none;
+    border-radius:0;
+    box-shadow:none;
+    background:#143528;
+  }
+  
+  .photo img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  
+  /* subtle fade from the four edges, not from the center */
+  .photo::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    background:
+      linear-gradient(
+        to right,
+        #143528 0%,
+        transparent 2%,
+        transparent 98%,
+        #143528 100%
+      ),
+      linear-gradient(
+        to bottom,
+        #143528 0%,
+        transparent 2%,
+        transparent 98%,
+        #143528 100%
+      );
+  }
+  
+  .photo__mono{
+    position:absolute;
+    inset:0;
+    display:grid;
+    place-items:center;
+    font-family:var(--serif);
+    font-weight:300;
+    font-size:3.6rem;
+    color:#FFFFFF;
+    letter-spacing:.04em;
+  }
+  
+  
+  /* =========================================================
+     HOME ABOUT SECTION
+     ========================================================= */
+  
+  section{
+    scroll-margin-top:84px;
+  }
+  
+  .section{
+    padding:clamp(3rem,5vw,4.5rem) 0;
+  
+    border-top:1px solid var(--line);
+  }
+  
+  .section--first{
+    border-top:none;
+  }
+  
+  .section__head{
+    display:flex;
+  
+    align-items:baseline;
+  
+    gap:.75rem;
+  
+    margin-bottom:2rem;
+  }
+  
+  .section__head .marker{
+    width:8px;
+    height:8px;
+  
+    border-radius:50%;
+  
+    background:var(--rose);
+  
+    transform:translateY(-3px);
+  
+    flex:0 0 auto;
+  }
+  
+  .section__title{
+    font-family:var(--serif);
+  
+    font-weight:600;
+  
+    font-size:clamp(1.7rem,3vw,2.1rem);
+  
+    letter-spacing:-.01em;
+  
+    margin:0;
+  
+    color:var(--ink);
+  }
+  
+  
+  /* -------- about text -------- */
+  
+  .about__body{
+    max-width:none;
+    width:100%;
+
+    text-align:justify;
+  
+    font-size:1.12rem;
+  
+    color:var(--ink-soft);
+  }
+  
+  .about__body p{
+    margin:0 0 1.1rem;
+  }
+  
+  .about__body strong{
+    color:var(--ink);
+  
+    font-weight:600;
+  }
+
+  .personal-block{
+    margin-top:2.2rem;
+  }
+  
+  .personal-block > p:first-child{
+    margin-bottom:.5rem;
+  }
+
+  .name-note{
+    font-size:1rem;
+    line-height:1.5;
+    color:var(--muted);
+    max-width:none;
+  }
+  
+  
+  /* -------- research interest tags -------- */
+  
+  .interests{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    margin-top:1.6rem;
+  
+    max-width:none;
+    width:100%;
+  }
+  
+  .tag{
+    font-family:var(--sans);
+  
+    font-size:.82rem;
+    font-weight:500;
+  
+    color:var(--ink-soft);
+  
+    padding:.36rem .78rem;
+  
+    border-radius:4px;
+  
+    background:var(--paper-2);
+  
+    border:1px solid var(--line);
+  }
+  
+  
+  /* =========================================================
+     SECONDARY PAGE LAYOUT
+     ========================================================= */
+  
+  .page{
+    padding:clamp(3rem,7vw,6rem) 0;
+  
+    min-height:70vh;
+  }
+  
+  .page__head{
+    margin-bottom:1.8rem;
+  }
+  
+  .page__eyebrow{
+    margin-bottom:.4rem;
+  }
+  
+  .page__title{
+    font-family:var(--serif);
+  
+    font-size:clamp(2.2rem,4vw,3.2rem);
+  
+    font-weight:600;
+  
+    line-height:1.15;
+  
+    letter-spacing:-.015em;
+  
+    margin:0;
+  
+    color:var(--ink);
+  }
+  
+  .page__intro{
+    max-width:var(--measure);
+  
+    margin-top:1rem;
+  
+    font-size:1.1rem;
+  
+    color:var(--ink-soft);
+  }
+  
+  .page__content{
+    max-width:var(--measure);
+  }
+  
+  
+  /* =========================================================
+     RESEARCH / PAPER CARDS
+     ========================================================= */
+  
+     .papers{
+        display:flex;
+        flex-direction:column;
+        gap:0;
+      }
+  
+  .paper{
+    background:transparent;
+    border:none;
+    border-radius:0;
+  
+    padding:1.6rem 0;
+  }
+  
+  /* horizontal line between papers */
+  .paper + .paper{
+    border-top:1px solid var(--line);
+  }
+  
+  
+  /* -------- paper status -------- */
+  
+  .paper__status{
+    display:inline-flex;
+  
+    align-items:center;
+  
+    gap:.45rem;
+  
+    font-family:var(--sans);
+  
+    font-size:.75rem;
+    font-weight:600;
+  
+    letter-spacing:.1em;
+  
+    text-transform:uppercase;
+  
+    color:var(--rose);
+  
+    margin-bottom:.85rem;
+  }
+  
+  .paper__status .dot{
+    width:6px;
+    height:6px;
+  
+    border-radius:50%;
+  
+    background:var(--rose);
+  }
+  
+  
+  /* -------- title and authors -------- */
+  
+  .paper__title{
+    font-family:var(--serif);
+  
+    font-weight:600;
+  
+    font-size:1.45rem;
+  
+    line-height:1.28;
+  
+    margin:0 0 .5rem;
+  
+    color:var(--ink);
+  
+    letter-spacing:-.005em;
+  }
+  
+  .paper__authors{
+    font-family:var(--sans);
+    font-size:.95rem;
+    color:var(--muted);
+    margin:0 0 1.2rem;
+  }
+  
+  .paper__authors .author-name{
+    color:var(--green);
+    font-weight:600;
+  }
+  
+  .paper__authors .me{
+    color:var(--green);
+  
+    font-weight:600;
+  }
+  
+  
+  /* -------- fields inside paper -------- */
+  
+  .field{
+    padding-top:0.3rem;
+    margin-top:0.3rem;
+    border-top:none;
+  }
+  
+  .field:first-of-type{
+    padding-top:0;
+    margin-top:0;
+  }
+  
+  .field__label{
+    display:block;
+  
+    margin-bottom:.5rem;
+  }
+  
+  .field__text{
+    font-size:1.03rem;
+    color:var(--ink-soft);
+  
+    width:100%;
+    max-width:none;
+
+    text-align:justify;
+  
+    margin:0;
+  }
+  
+  
+  /* -------- expandable abstract -------- */
+  
+  details.abstract{
+    margin:0;
+  }
+  
+  details.abstract > summary{
+    list-style:none;
+  
+    cursor:pointer;
+  
+    display:inline-flex;
+  
+    align-items:center;
+  
+    gap:.5rem;
+  
+    font-family:var(--sans);
+  
+    font-size:.78rem;
+    font-weight:600;
+  
+    letter-spacing:.12em;
+  
+    text-transform:uppercase;
+  
+    color:var(--green);
+  
+    user-select:none;
+  }
+  
+  details.abstract > summary::-webkit-details-marker{
+    display:none;
+  }
+  
+  details.abstract > summary .chev{
+    width:14px;
+    height:14px;
+  
+    transition:transform .25s ease;
+  
+    color:var(--rose);
+  }
+  
+  details.abstract[open] > summary .chev{
+    transform:rotate(90deg);
+  }
+  
+  details.abstract .field__text{
+    margin-top:.7rem;
+  }
+  
+  
+  /* -------- conferences -------- */
+  
+  .conf{
+    font-family:var(--sans);
+  
+    font-size:.95rem;
+  
+    color:var(--ink-soft);
+  
+    max-width:var(--measure);
+  
+    margin:0;
+  }
+  
+  .conf .yr{
+    color:var(--muted);
+  }
+  
+    /* -------- overall format ---------*/
+    .page__head{
+        margin-bottom:1.5rem;
+      }
+      
+      .paper{
+        background:transparent;
+        border:none;
+        border-radius:0;
+        padding:1rem 0;
+      }
+      
+      .paper + .paper{
+        border-top:1px solid var(--line);
+      }
+      
+      .field{
+        padding-top:.65rem;
+        margin-top:.65rem;
+        border-top:none;
+      }
+      
+      .field:first-of-type{
+        padding-top:0;
+        margin-top:.45rem;
+      }
+      
+      .field__label{
+        margin-bottom:.3rem;
+      }
+      
+      details.abstract .field__text{
+        margin-top:.45rem;
+      }
+
+    /* =========================================================
+   TEACHING
+   ========================================================= */
+
+.teaching{
+    width:100%;
+  }
+  
+  .teaching__group{
+    margin-top:2rem;
+  }
+  
+  .teaching__group:first-child{
+    margin-top:0;
+  }
+  
+  .teaching__category{
+    display:inline-block;
+  
+    margin:0 0 .8rem;
+  
+    font-family:var(--body-font);
+    font-size:1.05rem;
+    font-weight:700;
+  
+    color:var(--ink);
+  
+    border-bottom:1px solid var(--ink);
+  }
+  
+  .teaching__row{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+  
+    gap:2rem;
+  
+    align-items:baseline;
+  
+    margin:.55rem 0;
+  }
+  
+  .teaching__description{
+    color:var(--ink-soft);
+  }
+  
+  .teaching__description strong{
+    color:var(--green);
+    font-weight:700;
+  }
+  
+  .teaching__description em{
+    color:var(--ink);
+  }
+  
+  .teaching__affiliation{
+    color:var(--muted);
+  }
+  
+  .teaching__date{
+    font-style:italic;
+    color:var(--muted);
+  
+    white-space:nowrap;
+  }
+  
+/* =========================================================
+   DISCUSSION
+   ========================================================= */
+
+   .discussion-list{
+    margin-top:1.5rem;
+  }
+  
+  .discussion-year{
+    font-family:var(--body-font);
+    font-size:1.1rem;
+    font-weight:700;
+    color:var(--green-deep);
+  
+    margin-bottom:.35rem;
+  }
+  
+  .discussion-item{
+    margin:0;
+  
+    font-family:var(--body-font);
+    font-size:1rem;
+    color:var(--ink-soft);
+  }
+  
+  
+  /* =========================================================
+     CV PAGE
+     ========================================================= */
+  
+  .cv-box{
+    max-width:var(--measure);
+  
+    padding:2rem;
+  
+    border:1px solid var(--line);
+  
+    border-radius:8px;
+  
+    background:#FFFFFF;
+  }
+  
+  .cv-box p{
+    margin-top:0;
+  
+    color:var(--ink-soft);
+  }
+  
+  .cv-button{
+    display:inline-flex;
+  
+    align-items:center;
+  
+    padding:.65rem 1rem;
+  
+    font-family:var(--sans);
+  
+    font-size:.95rem;
+    font-weight:500;
+  
+    color:#FFFFFF;
+  
+    background:var(--green);
+  
+    border-radius:4px;
+  
+    transition:background .2s ease;
+  }
+  
+  .cv-button:hover{
+    background:var(--green-deep);
+  }
+  
+  
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+  
+  .footer{
+    background:#112C21;
+  
+    padding:2.6rem 0 3rem;
+  
+    margin-top:clamp(2rem,5vw,3.5rem);
+  }
+  
+  .footer__grid{
+    display:flex;
+  
+    flex-wrap:wrap;
+  
+    justify-content:space-between;
+  
+    gap:1.5rem;
+  
+    align-items:flex-end;
+  }
+  
+  .footer__name{
+    font-family:var(--serif);
+  
+    font-weight:600;
+    font-size:1.05rem;
+  
+    color:#F5F4EE;
+  }
+  
+  .footer__contact{
+    font-family:var(--sans);
+  
+    font-size:.9rem;
+  
+    color:rgba(232,238,229,.75);
+  
+    margin-top:.4rem;
+  }
+  
+  .footer__meta{
+    font-family:var(--sans);
+  
+    font-size:.78rem;
+  
+    color:rgba(232,238,229,.5);
+  }
+  
+  .footer__updated{
+    margin-top:.45rem;
+    font-family:var(--sans);
+    font-size:.78rem;
+    color:rgba(232,238,229,.5);
+  }
+  
+  .footer a{
+    color:#DCE5DC;
+  }
+  
+  
+  /* =========================================================
+     RESPONSIVE
+     ========================================================= */
+  
+  @media (max-width:760px){
+  
+    body{
+      font-size:17px;
+    }
+  
+    .nav{
+      padding:.9rem 1.25rem;
+    }
+  
+    /*
+      Hide the name in the navbar on small screens.
+    */
+  
+    .nav__brand{
+      display:none;
+    }
+  
+    .nav__links{
+      margin-left:0;
+  
+      gap:1rem;
+  
+      font-size:.9rem;
+  
+      width:100%;
+    }
+  
+    .hero .wrap{
+      max-width:var(--maxw);
+    }
+  
+    .hero__grid{
+      grid-template-columns:1fr;
+      gap:2.2rem;
+    }
+  
+    .hero__text{
+      max-width:none;
+    }
+  
+    .hero__eyebrow{
+      white-space:normal;
+    }
+  
+    .hero__figure{
+      max-width:430px;
+      order:-1;
+    }
+  
+    .photo{
+      width:100%;
+      max-width:none;
+    }
+  
+    .hero__name{
+      white-space:normal;
+    }
+  
+  }
+  
+  
+  @media (max-width:520px){
+  
+    .nav__links{
+      flex-wrap:wrap;
+  
+      row-gap:.35rem;
+    }
+  
+    .nav__links a{
+      margin-right:.4rem;
+    }
+  
+  }
+  
+  
+  /* =========================================================
+     REDUCED MOTION
+     ========================================================= */
+  
+  @media (prefers-reduced-motion:reduce){
+  
+    html{
+      scroll-behavior:auto;
+    }
+  
+    *{
+      transition:none !important;
+    }
+  
+  }
